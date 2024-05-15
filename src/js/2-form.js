@@ -12,9 +12,11 @@ if (savedFormData) {
 
 formEl.addEventListener('input', handleInput);
 
-function handleInput(evt) {
-  const { name, value } = evt.target;
-  formData[name] = value;
+function handleInput() {
+  formData = {
+    email: formEl.elements.email.value.trim(),
+    message: formEl.elements.message.value.trim(),
+  };
   addDataToLocalStorage(LS_KEY, formData);
 }
 
