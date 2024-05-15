@@ -1,0 +1,26 @@
+.list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+
+  margin: 250px auto;
+}
+.promo,
+.home {
+  border-radius: 8px;
+  padding: 6px;
+  background-color: #eaa30b;
+  color: white;
+}
+
+.promo:hover,
+.home:hover {
+  background: #e9b647;
+}
+
+.link {
+  padding: 10px;
+  width: 100px;
+  height: 100px;
+}

@@ -1,3 +1,6 @@
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
+
 const images = [
   {
     preview:
@@ -64,18 +67,17 @@ const images = [
   },
 ];
 
-const ulEl = document.querySelector('.gallery');
+const galleryList = document.querySelector('.gallery');
 
 function createMarkUp(array) {
   return array
-    .map(image => {
+    .map(({ original, preview, description }) => {
       return `<li class="gallery-item">
-  <a class="gallery-link" href="${image.original}">
+  <a class="gallery-link" href="${original}">
     <img
       class="gallery-image"
-      src="${image.preview}"
-      data-source="${image.original}"
-      alt="${image.description}"
+      src="${preview}"
+      alt="${description}"
     />
   </a>
 </li>
@@ -85,16 +87,11 @@ function createMarkUp(array) {
 }
 
 const markUp = createMarkUp(images);
-ulEl.innerHTML = markUp;
+galleryList.innerHTML = markUp;
 
-ulEl.addEventListener('click', evt => {
-  evt.preventDefault();
-  if (!evt.target.classList.contains('gallery-image')) {
-    return;
-  }
-
-  const source = evt.target.dataset.source;
-  const modal = basicLightbox.create(`
-    <img src="${source}">`);
-  modal.show();
+let galleryPicture = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionPosition: 'bottom',
+  captionDelay: 250,
+  enableKeyboard: true,
 });
